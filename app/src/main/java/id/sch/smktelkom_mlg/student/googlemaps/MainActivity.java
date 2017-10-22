@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
     static final CameraPosition NEWYORK = CameraPosition.builder()
@@ -33,12 +34,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             .bearing(0)
             .tilt(0)
             .build();
-    MarkerOptions smktelkom;
-    MarkerOptions kosrocky;
-    MarkerOptions kosdorayaki;
-    MarkerOptions bebekdulur;
-    MarkerOptions nelongso;
-    MarkerOptions biru;
+    MarkerOptions smktelkom, kosrocky, kosdorayaki, bebekdulur, nelongso, biru;
+    LatLng telkom = new LatLng(-7.9779684, 112.6592985);
+    LatLng rocky = new LatLng(-7.977883, 112.658810);
+    LatLng dora = new LatLng(-7.977683, 112.658922);
+    LatLng dulur = new LatLng(-7.974750, 112.660070);
+    LatLng nelo = new LatLng(-7.976780, 112.663762);
+    LatLng bi = new LatLng(7.977464, 112.654484);
+
     GoogleMap m_map;
     boolean mapReady = false;
 
@@ -48,32 +51,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         smktelkom = new MarkerOptions()
-                .position(new LatLng(-7.9779684, 112.6592985))
+                .position(telkom)
                 .title("SMK Telkom")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
         kosrocky = new MarkerOptions()
-                .position(new LatLng(-7.977883, 112.658810))
+                .position(rocky)
                 .title("Kos Rocky")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
         kosdorayaki = new MarkerOptions()
-                .position(new LatLng(-7.977683, 112.658922))
+                .position(dora)
                 .title("Kos Dorayaki")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
         bebekdulur = new MarkerOptions()
-                .position(new LatLng(-7.974750, 112.660070))
+                .position(dulur)
                 .title("Bebek Dulur")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
         nelongso = new MarkerOptions()
-                .position(new LatLng(-7.976780, 112.663762))
+                .position(nelo)
                 .title("Ayam Nelongso")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
         biru = new MarkerOptions()
-                .position(new LatLng(7.977464, 112.654484))
+                .position(bi)
                 .title("Biru")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
@@ -121,6 +124,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         m_map.addMarker(kosdorayaki);
         m_map.addMarker(bebekdulur);
         m_map.addMarker(biru);
+        map.addPolyline(new PolylineOptions().geodesic(true)
+                .add(telkom)
+                .add(rocky)
+                .add(dora)
+                .add(dulur)
+                .add(nelo)
+                .add(bi));
+
         flyTo(MALANG);
+
     }
 }
