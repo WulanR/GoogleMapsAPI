@@ -22,18 +22,18 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnTelkom"
+                android:id="@+id/btnMalang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="SMK Telkom" />
+                android:text="Malang" />
 
             <Button
-                android:id="@+id/btnMalaysia"
+                android:id="@+id/btnKuala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Malaysia" />
+                android:text="Kuala Lumpur" />
 
             <Button
                 android:id="@+id/btnNewYork"
