@@ -13,37 +13,56 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+    static final CameraPosition NEWYORK = CameraPosition.builder()
+            .target(new LatLng(40.7127, 74.0059))
+            .zoom(21)
+            .bearing(0)
+            .tilt(45)
+            .build();
+    static final CameraPosition SMKTELKOM = CameraPosition.builder()
+            .target(new LatLng(-7.9768972, 112.6565519))
+            .zoom(21)
+            .bearing(0)
+            .tilt(45)
+            .build();
+    static final CameraPosition KUALALUMPUR = CameraPosition.builder()
+            .target(new LatLng(3.1385036, 101.6169484))
+            .zoom(21)
+            .bearing(0)
+            .tilt(45)
+            .build();
     GoogleMap m_map;
     boolean mapReady = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnMap = (Button) findViewById(R.id.btnMap);
+        Button btnMap = (Button) findViewById(R.id.btnTelkom);
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mapReady)
-                    m_map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    flyTo(SMKTELKOM);
             }
         });
 
-        Button btnSatelit = (Button) findViewById(R.id.btnSatelit);
+        Button btnSatelit = (Button) findViewById(R.id.btnNewYork);
         btnSatelit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mapReady)
-                    m_map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                    flyTo(NEWYORK);
             }
         });
 
-        Button btnHybrid = (Button) findViewById(R.id.btnHybrid);
+        Button btnHybrid = (Button) findViewById(R.id.btnMalaysia);
         btnHybrid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mapReady)
-                    m_map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                    flyTo(KUALALUMPUR);
             }
         });
 
@@ -51,12 +70,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+    private void flyTo(CameraPosition target) {
+        m_map.animateCamera(CameraUpdateFactory.newCameraPosition(target), 10000, null);
+    }
+
     @Override
     public void onMapReady(GoogleMap map) {
         mapReady = true;
         m_map = map;
-        LatLng SMKTelkom = new LatLng(-7.9768972, 112.6565519);
-        CameraPosition target = CameraPosition.builder().target(SMKTelkom).zoom(14).build();
-        m_map.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+        m_map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        flyTo(SMKTELKOM);
     }
 }

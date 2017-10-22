@@ -22,25 +22,25 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnMap"
+                android:id="@+id/btnTelkom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Map" />
+                android:text="SMK Telkom" />
 
             <Button
-                android:id="@+id/btnSatelit"
+                android:id="@+id/btnMalaysia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Satelit" />
+                android:text="Malaysia" />
 
             <Button
-                android:id="@+id/btnHybrid"
+                android:id="@+id/btnNewYork"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hybrid" />
+                android:text="New York" />
         </LinearLayout>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
