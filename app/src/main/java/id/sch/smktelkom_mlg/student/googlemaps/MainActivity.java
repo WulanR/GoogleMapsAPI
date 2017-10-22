@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.student.googlemaps;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -131,7 +133,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .add(dulur)
                 .add(nelo)
                 .add(bi));
-
+        map.addCircle(new CircleOptions()
+                .center(telkom)
+                .radius(5000)
+                .strokeColor(Color.GREEN)
+                .fillColor(Color.argb(64, 0, 255, 0)));
         flyTo(MALANG);
 
     }
